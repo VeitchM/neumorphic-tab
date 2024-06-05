@@ -10,7 +10,9 @@ const { canvasHeight, tabHeight } = defaultTabBarProps;
 
 
 
-/** Maybe i do it from scratch and consider using skia for everything in one canvas for performance improvement */
+/** Tab Bar with neomorphic style
+ * 
+ */
 
 //TODO read
 // const defaultTheme = { active: "purple", inactive: "gray" };

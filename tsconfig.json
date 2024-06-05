@@ -1,17 +1,19 @@
 {
   "compilerOptions": {
     "strict": true,
-    "outDir":"./lib",
+    "outDir":"./dist",
     "rootDir":"./src",
-    "allowJs": true,
+      "allowJs": true,
     "esModuleInterop": true,
     "jsx": "react-native",
     "lib": ["DOM", "ESNext"],
     "moduleResolution": "node",
-    "noEmit": true,
+    // "noEmit": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "target": "ESNext"
+    "target": "ESNext",
+    "declaration": true,  // This option generates the .d.ts files
+
   },
   "include": ["src"],
   "exclude": ["node_modules"]
