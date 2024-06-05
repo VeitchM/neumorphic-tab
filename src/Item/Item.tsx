@@ -18,7 +18,7 @@ export default function Item(props: {
   Icon?: TabBarIcon;
   Label?: TabBarLabel;
   tabBarStyle?: TabBarProps;
-  onPress: () => void;
+  onPress?: () => void;
   invert?: boolean;
 }) {
   const { isFocused, onPress, Icon, Label } = props;
@@ -123,7 +123,6 @@ export default function Item(props: {
             color={tabBarStyle.textColor}
             focused={isFocused}
             children={""}
-            position={"below-icon"}
           />
         ) : null}
       </Animated.View>

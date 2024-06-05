@@ -1,17 +1,14 @@
-import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import { ColorValue, LayoutRectangle, View } from "react-native";
-// import { Button, Text } from "react-native-paper";
 import { useMemo, useState } from "react";
 
 import Item from "./Item/Item";
 import Background from "./Background/Background";
-import { Color } from "@shopify/react-native-skia";
 import { TabBarProps } from "./types";
 import defaultTabBarProps from "./const";
 
 const { canvasHeight, tabHeight } = defaultTabBarProps;
 
-// https://neumorphism.io/#e0e0e0
+
 
 /** Maybe i do it from scratch and consider using skia for everything in one canvas for performance improvement */
 

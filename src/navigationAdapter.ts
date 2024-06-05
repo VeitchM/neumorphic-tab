@@ -1,12 +1,10 @@
-import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
-import { Tabs } from "./types";
+import { TabBarIcon, TabBarLabel, Tabs } from "./types";
 
 export function convertNavigationProps(props: BottomTabBarProps) {
   const tabs: Tabs[] = [];
 
-  props.state.routes.forEach((route, index) => {
+  props.state.routes.forEach((route) => {
     const screen = props.descriptors[route.key];
-    const isFocused = props.state.index === index;
     tabs.push({
       Icon: screen.options.tabBarIcon,
       Label: screen.options.tabBarLabel,
@@ -17,6 +15,25 @@ export function convertNavigationProps(props: BottomTabBarProps) {
   return {
     tabs,
     selected: props.state.index,
-    length:props.state.routes.length
+    length: props.state.routes.length,
   };
 }
+
+type BottomTabBarProps = {
+  state: {
+    routes: {
+      key: string;
+      name: string;
+    }[];
+    index: number;
+  };
+  navigation: { navigate: (route: string) => void };
+  descriptors: {
+    [key: string]: {
+      options: {
+        tabBarIcon: TabBarIcon;
+        tabBarLabel: TabBarLabel;
+      };
+    };
+  };
+};

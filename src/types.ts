@@ -1,7 +1,5 @@
-import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import { ReactNode } from "react";
 import defaultTabBarProps from "./const";
-import { LabelPosition } from "@react-navigation/bottom-tabs/lib/typescript/src/types";
 
 export type TabBarProps = Partial<typeof defaultTabBarProps>;
 

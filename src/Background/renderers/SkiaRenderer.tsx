@@ -13,9 +13,6 @@ import {
   Canvas,
   Path,
   Shadow,
-  Skia,
-  interpolatePaths,
-  notifyChange,
 } from "@shopify/react-native-skia";
 
 const blur = 3;
