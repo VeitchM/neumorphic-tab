@@ -24,3 +24,6 @@ export type Tabs = {
   key: string;
   onPress?: () => void;
 };
+
+
+export type TabBarProperties = typeof defaultTabBarProps & {bigRadius:number,tabHeight:number,canvasHeight:number}

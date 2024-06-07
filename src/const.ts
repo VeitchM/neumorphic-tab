@@ -30,9 +30,9 @@ const defaultTabBarProps = {
   focusedColor: "#303030",
   unfocusedColor: "#707070",
   marginForEffects,
-  bigRadius,
-  tabHeight,
-  canvasHeight,
+  // bigRadius,
+  // tabHeight,
+  // canvasHeight,
   invert: false,
   simplify: false,
 

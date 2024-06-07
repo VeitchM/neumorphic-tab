@@ -1,14 +1,14 @@
 import { LayoutRectangle } from "react-native";
 import defaultTabBarProps from "../const";
+import { TabBarProperties } from "../types";
 
-const { bigRadius, canvasHeight,  smallRadius, tabHeight } =
-  defaultTabBarProps;
+
 
 export const createSVG = (
   selected: number,
   tabs: number,
   layout: LayoutRectangle | undefined,
-  invert?: boolean
+  properties:TabBarProperties
 ) => {
   const bigArc = (r: number, initX: number, initY: number, invert?: boolean) =>
     ` A ${r} ${r} 0 0 ${invert ? "1" : "0"} ${initX + 2 * r} ${initY}`;
@@ -28,7 +28,7 @@ export const createSVG = (
   const x = 0;
   const xMargin=10
   //   const y = marginForEffects;
-  const y = canvasHeight - tabHeight;
+  const y = properties.canvasHeight - properties.tabHeight;
   const w = layout?.width || 600;
   // console.log("The layout is ", layout);
 
@@ -38,9 +38,9 @@ export const createSVG = (
     const startArcPoint = (w / tabs) * (index + 0.5);
 
     // const localBigRadius = isSelected ? bigRadius : 0.01;
-    const localBigRadius = isSelected ? bigRadius : 0.1;
+    const localBigRadius = isSelected ? properties.bigRadius : 0.1;
     // const localSmallRadius = isSelected ? smallRadius : 0.01;
-    const localSmallRadius = isSelected ? smallRadius : 0.1;
+    const localSmallRadius = isSelected ? properties.smallRadius : 0.1;
 
     return ` L ${startArcPoint - localSmallRadius - localBigRadius} ${y} 
           ${smallArc(
@@ -48,20 +48,20 @@ export const createSVG = (
             startArcPoint - localSmallRadius - localBigRadius,
             y,
             false,
-            invert
+            properties.invert
           )}
           ${bigArc(
             localBigRadius,
             startArcPoint - localBigRadius,
-            y + (invert ? -localSmallRadius : localSmallRadius),
-            invert
+            y + (properties.invert ? -localSmallRadius : localSmallRadius),
+            properties.invert
           )}
           ${smallArc(
             localSmallRadius,
             startArcPoint + localBigRadius,
-            y + (invert ? -localSmallRadius : localSmallRadius),
+            y + (properties.invert ? -localSmallRadius : localSmallRadius),
             true,
-            invert
+            properties.invert
           )}`;
   };
   let Arcs = " ";

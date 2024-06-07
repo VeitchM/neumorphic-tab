@@ -28,8 +28,14 @@
   ],
   "homepage": "https://github.com/VeitchM/neumorphic-tab#readme",
   "devDependencies": {  
+    "react": "*",
+    "react-native": "*",
+    "react-native-reanimated": "^3.0.0",
+    "typescript": "^4.0.0",
+    "@shopify/react-native-skia":"^1.0.0",
+    "react-native-redash":"*"
 
-  "typescript": "*"},
+},
   "peerDependencies": {
     "@shopify/react-native-skia": "*",
     "@types/react": "*",
@@ -37,8 +43,7 @@
     "react": "*",
     "react-native": "*",
     "react-native-svg": "*",
-    "react-native-gesture-handler": ">=1.10.1",
-    "react-native-reanimated": ">=3.0.0",
+    "react-native-reanimated": "^3.0.0",
     "react-native-redash":"*"
   }
 }

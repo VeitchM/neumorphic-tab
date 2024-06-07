@@ -9,11 +9,7 @@ import * as redash from "react-native-redash";
 
 import { RendererProps } from "./types";
 import { useEffect, useMemo } from "react";
-import {
-  Canvas,
-  Path,
-  Shadow,
-} from "@shopify/react-native-skia";
+import { Canvas, Path, Shadow } from "@shopify/react-native-skia";
 
 const blur = 3;
 const displacement = 1;
@@ -21,7 +17,6 @@ const displacement = 1;
 /** Using the same method as in SVG Renderer it destroy performance, handling strings may be the cause */
 
 export default function SkiaRenderer(props: RendererProps) {
-
   const allPaths = useMemo(
     () => props.paths.map((path) => redash.parse(path)),
     [props.paths]
@@ -44,7 +39,6 @@ export default function SkiaRenderer(props: RendererProps) {
   });
 
   useEffect(() => {
-
     paths.value = {
       previous: redash.parse(path.value),
       current: allPaths[props.selected],
@@ -57,25 +51,24 @@ export default function SkiaRenderer(props: RendererProps) {
   return (
     <Canvas style={[props.layout]}>
       <Path path={path} color={props.color || "#5c21ff"} strokeWidth={2}>
-       {props.simplify ? 
-       (
-<>
-         <Shadow
-         dx={-displacement}
-         dy={-displacement}
-         blur={blur}
-         color="#00000088"
-         inner
-         />
-        <Shadow
-        dx={displacement}
-        dy={displacement}
-        blur={blur}
-        color="#ffffff55"
-        inner
-        />
-        </>
-      ):null}
+        {props.simplify ? null : (
+          <>
+            <Shadow
+              dx={-displacement}
+              dy={-displacement}
+              blur={blur}
+              color="#00000088"
+              inner
+            />
+            <Shadow
+              dx={displacement}
+              dy={displacement}
+              blur={blur}
+              color="#ffffff55"
+              inner
+            />
+          </>
+        ) }
       </Path>
     </Canvas>
   );

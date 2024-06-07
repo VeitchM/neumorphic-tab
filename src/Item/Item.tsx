@@ -9,7 +9,7 @@ import Animated, {
 } from "react-native-reanimated";
 
 import IconWrapper from "./IconWrapper";
-import { TabBarIcon, TabBarLabel, TabBarProps } from "../types";
+import { TabBarIcon, TabBarLabel, TabBarProperties, TabBarProps } from "../types";
 import defaultTabBarProps from "../const";
 
 export default function Item(props: {
@@ -17,19 +17,19 @@ export default function Item(props: {
   // screen: BottomTabDescriptor;
   Icon?: TabBarIcon;
   Label?: TabBarLabel;
-  tabBarStyle?: TabBarProps;
+  tabBarProperties: TabBarProperties;
   onPress?: () => void;
-  invert?: boolean;
 }) {
   const { isFocused, onPress, Icon, Label } = props;
 
-  const tabBarStyle = { ...defaultTabBarProps, ...props.tabBarStyle };
 
   const [beingPressed, setBeingPressed] = useState(false);
 
+  const {tabBarProperties} = props
+
   const color = isFocused
-    ? tabBarStyle.focusedColor
-    : tabBarStyle.unfocusedColor;
+    ? tabBarProperties.focusedColor
+    : tabBarProperties.unfocusedColor;
 
   const isFocusedTransition = useSharedValue(0);
 
@@ -39,8 +39,8 @@ export default function Item(props: {
   }, [isFocused]);
 
   const tabEdge =
-    -tabBarStyle.tabHeight / 2 +
-    (props.invert ? -tabBarStyle.smallRadius : tabBarStyle.smallRadius);
+    -tabBarProperties.tabHeight / 2 +
+    (tabBarProperties.invert ? -tabBarProperties.smallRadius : tabBarProperties.smallRadius);
 
   const iconStyle = useAnimatedStyle(() => {
     return {
@@ -49,7 +49,7 @@ export default function Item(props: {
           scale: interpolate(
             isFocusedTransition.value,
             [0, 1],
-            [tabBarStyle.buttonUnselectedScale, 1]
+            [tabBarProperties.buttonUnselectedScale, 1]
           ),
         },
         {
@@ -73,11 +73,11 @@ export default function Item(props: {
             isFocusedTransition.value,
             [0, 1],
             [
-              tabBarStyle.canvasHeight,
+              tabBarProperties.canvasHeight,
               tabEdge +
-                tabBarStyle.buttonSize / 2 +
-                tabBarStyle.labelGap +
-                tabBarStyle.radiusGap,
+                tabBarProperties.buttonSize / 2 +
+                tabBarProperties.labelGap +
+                tabBarProperties.radiusGap,
             ]
           ),
         },
@@ -103,16 +103,16 @@ export default function Item(props: {
       {Icon ? (
         <Animated.View style={iconStyle}>
           <IconWrapper
-            size={tabBarStyle.buttonSize}
+            size={tabBarProperties.buttonSize}
             focused={isFocused}
             beingPressed={beingPressed}
-            baseColor={tabBarStyle.itemColor}
-            inverted={props.invert}
+            baseColor={tabBarProperties.itemColor}
+            inverted={tabBarProperties.invert}
           >
             <Icon
               color={color}
               focused={isFocused}
-              size={(tabBarStyle.buttonSize / 4) * 3}
+              size={(tabBarProperties.buttonSize / 4) * 3}
             />
           </IconWrapper>
         </Animated.View>
@@ -120,7 +120,7 @@ export default function Item(props: {
       <Animated.View style={textStyle}>
         {Label ? (
           <Label
-            color={tabBarStyle.textColor}
+            color={tabBarProperties.textColor}
             focused={isFocused}
             children={""}
           />

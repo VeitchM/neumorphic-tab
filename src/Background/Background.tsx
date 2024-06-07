@@ -5,6 +5,7 @@ import { createSVG } from "./utils";
 import SVGRenderer from "./renderers/SVGRenderer";
 import SkiaRenderer from "./renderers/SkiaRenderer";
 import defaultTabBarProps from "../const";
+import { TabBarProperties } from "../types";
 
 const defaultColor = defaultTabBarProps.tabBarColor;
 
@@ -13,14 +14,14 @@ export default function Background(props: {
   selected: number;
   tabs: number;
   color?: ColorValue;
-  invert?: boolean;
   simplify?: boolean;
+  properties:TabBarProperties
 }) {
   const allPaths = useMemo(() => {
     console.log("Reprocessed SVGs");
     let allPaths = new Array<string>();
     for (let index = 0; index < props.tabs; index++) {
-      allPaths.push(createSVG(index, props.tabs, props.layout, props.invert));
+      allPaths.push(createSVG(index, props.tabs, props.layout, props.properties));
     }
     return allPaths;
   }, [props.layout, props.tabs]);
@@ -39,6 +40,7 @@ export default function Background(props: {
       selected={props.selected}
       color={props.color?.toString() || defaultColor}
       layout={props.layout}
+      simplify={props.simplify}
     />
   );
 }

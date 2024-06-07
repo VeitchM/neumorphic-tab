@@ -5,8 +5,9 @@ import Item from "./Item/Item";
 import Background from "./Background/Background";
 import { TabBarProps } from "./types";
 import defaultTabBarProps from "./const";
+import {  getProperties } from "./utils";
 
-const { canvasHeight, tabHeight } = defaultTabBarProps;
+// const { canvasHeight, tabHeight } = defaultTabBarProps;
 
 
 
@@ -21,7 +22,7 @@ export default function TabBar(props: TabBarProps) {
   const [layout, setLayout] = useState<LayoutRectangle>();
   // const invert = props.invert ?? true;
 
-  const params = useMemo(() => ({ ...defaultTabBarProps, ...props }), [props]);
+  const properties = useMemo(() => (getProperties(props)), [props]);
 
   return (
     <View
@@ -29,7 +30,7 @@ export default function TabBar(props: TabBarProps) {
       style={{
         flexDirection: "row",
         justifyContent: "space-evenly",
-        height: canvasHeight,
+        height: properties.canvasHeight,
         alignItems: "flex-end",
         width: "100%",
         position: "absolute",
@@ -45,11 +46,11 @@ export default function TabBar(props: TabBarProps) {
         >
           <Background
             layout={layout}
-            selected={params.selected}
-            tabs={params.length}
-            invert={params.invert}
-            color={params.tabBarColor}
-            simplify={params.simplify}
+            selected={properties.selected}
+            tabs={properties.length}
+            properties={properties}
+            color={properties.tabBarColor}
+            simplify={properties.simplify}
           />
         </View>
       ) : null}
@@ -57,21 +58,20 @@ export default function TabBar(props: TabBarProps) {
         style={{
           flexDirection: "row",
           justifyContent: "space-evenly",
-          height: tabHeight,
+          height: properties.tabHeight,
           width: "100%",
         }}
       >
-        {params.tabs.map((tab, index) => {
-          // const screen = params.descriptors[route.key];
-          // const screen = params.descriptors[route.key];
-          // const isFocused = params.state.index === index;
+        {properties.tabs.map((tab, index) => {
+          // const screen = properties.descriptors[route.key];
+          // const screen = properties.descriptors[route.key];
+          // const isFocused = properties.state.index === index;
           return (
             <Item
               key={tab.key}
-              isFocused={index===params.selected}
+              isFocused={index===properties.selected}
               // screen={screen}
-              invert={params.invert}
-              tabBarStyle={params}
+              tabBarProperties={properties}
               Icon={tab.Icon}
               Label={tab.Label}
               onPress={tab.onPress}
