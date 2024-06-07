@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 import defaultTabBarProps from "./const";
 
 export type TabBarProps = Partial<typeof defaultTabBarProps>;
@@ -7,7 +7,7 @@ export type TabBarIcon = (props: {
   focused: boolean;
   color: string;
   size: number;
-}) => ReactNode;
+}) => ReactElement;
 
 export type TabBarLabel =
   | string
