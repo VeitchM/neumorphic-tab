@@ -7,4 +7,5 @@ export type RendererProps = {
   color: string; // Should be ColorValue
   paths: string[];
   selected: number;
+  simplify?:boolean;
 };

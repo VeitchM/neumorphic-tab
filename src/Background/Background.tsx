@@ -25,14 +25,15 @@ export default function Background(props: {
     return allPaths;
   }, [props.layout, props.tabs]);
 
-  return props.simplify ? (
-    <SVGRenderer
-      paths={allPaths}
-      selected={props.selected}
-      color={props.color?.toString() || defaultColor}
-      layout={props.layout}
-    />
-  ) : (
+  // return props.simplify ? (
+  //   <SVGRenderer
+  //     paths={allPaths}
+  //     selected={props.selected}
+  //     color={props.color?.toString() || defaultColor}
+  //     layout={props.layout}
+  //   />
+  // ) : (
+  return (
     <SkiaRenderer
       paths={allPaths}
       selected={props.selected}

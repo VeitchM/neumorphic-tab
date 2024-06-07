@@ -57,20 +57,25 @@ export default function SkiaRenderer(props: RendererProps) {
   return (
     <Canvas style={[props.layout]}>
       <Path path={path} color={props.color || "#5c21ff"} strokeWidth={2}>
+       {props.simplify ? 
+       (
+<>
+         <Shadow
+         dx={-displacement}
+         dy={-displacement}
+         blur={blur}
+         color="#00000088"
+         inner
+         />
         <Shadow
-          dx={-displacement}
-          dy={-displacement}
-          blur={blur}
-          color="#00000088"
-          inner
+        dx={displacement}
+        dy={displacement}
+        blur={blur}
+        color="#ffffff55"
+        inner
         />
-        <Shadow
-          dx={displacement}
-          dy={displacement}
-          blur={blur}
-          color="#ffffff55"
-          inner
-        />
+        </>
+      ):null}
       </Path>
     </Canvas>
   );

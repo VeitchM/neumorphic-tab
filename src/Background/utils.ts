@@ -26,6 +26,7 @@ export const createSVG = (
   //   const layout = props.layout;
   // console.log("Layout", layout);
   const x = 0;
+  const xMargin=10
   //   const y = marginForEffects;
   const y = canvasHeight - tabHeight;
   const w = layout?.width || 600;
@@ -68,6 +69,6 @@ export const createSVG = (
     Arcs += completeArc(index, index === selected);
   }
 
-  return `M ${x} ${y} ${Arcs}
-      L ${x + w} ${y} L ${x + w}  ${y + h} L ${x} ${y + h} L ${x} ${y} `;
+  return `M ${x -xMargin} ${y} ${Arcs}
+      L ${x+xMargin + w} ${y} L ${x+xMargin + w}  ${y + h} L ${x-xMargin} ${y + h} L ${x-xMargin} ${y} `;
 };
