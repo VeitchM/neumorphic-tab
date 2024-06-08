@@ -10,6 +10,8 @@ export const createSVG = (
   layout: LayoutRectangle | undefined,
   properties:TabBarProperties
 ) => {
+
+  
   const bigArc = (r: number, initX: number, initY: number, invert?: boolean) =>
     ` A ${r} ${r} 0 0 ${invert ? "1" : "0"} ${initX + 2 * r} ${initY}`;
   const smallArc = (

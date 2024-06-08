@@ -37,7 +37,7 @@ export default function TabBar(props: TabBarProps) {
         bottom: 0,
       }}
     >
-      {layout ? (
+      {layout && properties.tabs.length? (
         <View
           style={{
             position: "absolute",
@@ -47,7 +47,7 @@ export default function TabBar(props: TabBarProps) {
           <Background
             layout={layout}
             selected={properties.selected}
-            tabs={properties.length}
+            tabs={properties.tabs.length}
             properties={properties}
             color={properties.tabBarColor}
             simplify={properties.simplify}

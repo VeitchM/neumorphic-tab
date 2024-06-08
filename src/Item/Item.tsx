@@ -42,6 +42,12 @@ export default function Item(props: {
     -tabBarProperties.tabHeight / 2 +
     (tabBarProperties.invert ? -tabBarProperties.smallRadius : tabBarProperties.smallRadius);
 
+const renderedIcon = Icon ? Icon({
+color,
+focused:isFocused,
+size:(tabBarProperties.buttonSize / 4) * 3})
+: null
+
   const iconStyle = useAnimatedStyle(() => {
     return {
       transform: [
@@ -109,11 +115,7 @@ export default function Item(props: {
             baseColor={tabBarProperties.itemColor}
             inverted={tabBarProperties.invert}
           >
-            <Icon
-              color={color}
-              focused={isFocused}
-              size={(tabBarProperties.buttonSize / 4) * 3}
-            />
+           { renderedIcon}
           </IconWrapper>
         </Animated.View>
       ) : null}

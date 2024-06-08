@@ -37,7 +37,6 @@ const defaultTabBarProps = {
   simplify: false,
 
   selected: 0,
-  length: 0,
   tabs: new Array<Tabs>(),
 };
 

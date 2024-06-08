@@ -15,7 +15,6 @@ export function convertNavigationProps(props: BottomTabBarProps) {
   return {
     tabs,
     selected: props.state.index,
-    length: props.state.routes.length,
   };
 }
 
@@ -31,8 +30,8 @@ type BottomTabBarProps = {
   descriptors: {
     [key: string]: {
       options: {
-        tabBarIcon: TabBarIcon;
-        tabBarLabel: TabBarLabel;
+        tabBarIcon?: TabBarIcon;
+        tabBarLabel?: TabBarLabel;
       };
     };
   };

@@ -7,7 +7,7 @@ export type TabBarIcon = (props: {
   focused: boolean;
   color: string;
   size: number;
-}) => ReactElement;
+}) => ReactNode;
 
 export type TabBarLabel =
   | string
@@ -15,7 +15,7 @@ export type TabBarLabel =
       focused: boolean;
       color: string;
       children: string;
-    }) => React.ReactNode)
+    }) => ReactNode)
   | undefined;
 
 export type Tabs = {
