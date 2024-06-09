@@ -1,3 +1,4 @@
+import { Text } from "react-native";
 import { TabBarIcon, TabBarLabel, Tabs } from "./types";
 
 export function convertNavigationProps(props: BottomTabBarProps) {
@@ -7,7 +8,14 @@ export function convertNavigationProps(props: BottomTabBarProps) {
     const screen = props.descriptors[route.key];
     tabs.push({
       Icon: screen.options.tabBarIcon,
-      Label: screen.options.tabBarLabel,
+      Label:
+        typeof screen.options.tabBarLabel === "string"
+          ? ({ color }) => (
+              <Text style={{ color }}>
+                {screen.options.tabBarLabel as string}
+              </Text>
+            )
+          : screen.options.tabBarLabel,
       key: route.key,
       onPress: () => props.navigation.navigate(route.name),
     });

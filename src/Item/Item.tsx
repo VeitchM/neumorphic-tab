@@ -9,8 +9,12 @@ import Animated, {
 } from "react-native-reanimated";
 
 import IconWrapper from "./IconWrapper";
-import { TabBarIcon, TabBarLabel, TabBarProperties, TabBarProps } from "../types";
-import defaultTabBarProps from "../const";
+import {
+  TabBarIcon,
+  TabBarLabel,
+  TabBarProperties,
+  TabBarProps,
+} from "../types";
 
 export default function Item(props: {
   isFocused: boolean;
@@ -22,10 +26,9 @@ export default function Item(props: {
 }) {
   const { isFocused, onPress, Icon, Label } = props;
 
-
   const [beingPressed, setBeingPressed] = useState(false);
 
-  const {tabBarProperties} = props
+  const { tabBarProperties } = props;
 
   const color = isFocused
     ? tabBarProperties.focusedColor
@@ -40,13 +43,17 @@ export default function Item(props: {
 
   const tabEdge =
     -tabBarProperties.tabHeight / 2 +
-    (tabBarProperties.invert ? -tabBarProperties.smallRadius : tabBarProperties.smallRadius);
+    (tabBarProperties.invert
+      ? -tabBarProperties.smallRadius
+      : tabBarProperties.smallRadius);
 
-const renderedIcon = Icon ? Icon({
-color,
-focused:isFocused,
-size:(tabBarProperties.buttonSize / 4) * 3})
-: null
+  const renderedIcon = Icon
+    ? Icon({
+        color,
+        focused: isFocused,
+        size: (tabBarProperties.buttonSize / 4) * 3,
+      })
+    : null;
 
   const iconStyle = useAnimatedStyle(() => {
     return {
@@ -115,7 +122,7 @@ size:(tabBarProperties.buttonSize / 4) * 3})
             baseColor={tabBarProperties.itemColor}
             inverted={tabBarProperties.invert}
           >
-           { renderedIcon}
+            {renderedIcon}
           </IconWrapper>
         </Animated.View>
       ) : null}
@@ -125,6 +132,7 @@ size:(tabBarProperties.buttonSize / 4) * 3})
             color={tabBarProperties.textColor}
             focused={isFocused}
             children={""}
+            position={'beside-icon'}
           />
         ) : null}
       </Animated.View>

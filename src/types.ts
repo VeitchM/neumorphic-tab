@@ -15,6 +15,7 @@ export type TabBarLabel =
       focused: boolean;
       color: string;
       children: string;
+      position: "below-icon" | "beside-icon"
     }) => ReactNode)
   | undefined;
 
