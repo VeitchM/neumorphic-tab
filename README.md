@@ -4,6 +4,8 @@
 
 A react native bottom tab with a neumorphic style.
 
+![React Native Neumorphic Tab](./blankApp.gif)
+![React Native Neumorphic Tab](./expoApp.gif)
 ![React Native Neumorphic Tab](./demo.gif)
 
 ## Installation
@@ -32,12 +34,176 @@ npm install react-native-reanimated react-native-gesture-handler @shopify/react-
 - Accessibility support.
 - Written in `TypeScript`.
 
+
+
+## Props
+
+### tabs
+
+```required```
+
+An array which contains objects with:
+
+- key: ```string``` unique key
+- Label: ```string | ({color,focused}) => ReactNode```
+- Icon: ```({color}) => ReactNode```
+- onPress: ```()=>void``` executed when pressed
+
+### selected
+
+```required``` if not using ```convertNavigationProps```.
+
+### simplify
+
+```optional```
+
+type: ```boolean```
+
+Deactivates border shadows in the tab, it could be use for low end devices.
+
+### invert
+
+```optional```
+
+type: ```boolean```
+
+Makes the tab's background to wrapped the item when selected. 
+
+### tabBarColor
+
+```optional```
+
+type: ```string```
+
+### itemColor
+
+```optional```
+
+type: ```string```
+
+### focusedColor
+
+```optional```
+
+type: ```string```
+
+### buttonPadding
+
+```optional```
+
+type: ```number```
+
+### radiusGap
+
+```optional```
+
+type: ```number```
+
+Defines the space between the icon item and its background.
+
+### labelGap
+
+```optional```
+
+type: ```number```
+
+Defines the space between the icon item and the label.
+
+### buttonUnselectedScale
+
+```optional```
+
+type: ```number```
+
+Defines how much the item will shrink when unfocus.
+
 ## Usage
 
+### Standalone usage
 
-### Parameters
+```JSX
+import { TabBar } from "neumorphic-tab";
+import { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+
+export default function App() {
+  const [tabSelected, setTabSelected] = useState(0);
+
+  const onSelectTab = (tab) => {
+    // do stuff
+    setTabSelected(tab);
+  };
+
+  return (
+    <View style={styles.container}>
+      <TabBar
+        tabBarColor="#6666ff"
+        itemColor="#ffffff"
+        focusedColor="#6666ff"
+        textColor="#ffffff"
+        selected={tabSelected}
+        buttonPadding={14}
+        radiusGap={6}
+        labelGap={12}
+        buttonUnselectedScale={0.7}
+        tabs={[
+          {
+            key:'1',
+            Label: ({ color }) => <Text style={{ color }}>Tab1</Text>,
+            Icon: ({ color }) => (
+              <Text style={{ color, fontSize: 24, fontWeight: "800" }}>1</Text>
+            ),
+            onPress: () => onSelectTab(0),
+          },
+          {
+            key:'2',
+            Label: ({ color }) => <Text style={{ color }}>Tab2</Text>,
+            Icon: ({ color }) => (
+              <Text style={{ color, fontSize: 24, fontWeight: "800" }}>2</Text>
+            ),
+            onPress: () => onSelectTab(1),
+          },
+          {
+            key:'3',
+            Label: ({ color }) => <Text style={{ color }}>Tab3</Text>,
+            Icon: ({ color }) => (
+              <Text style={{ color, fontSize: 24, fontWeight: "800" }}>3</Text>
+            ),
+            onPress: () => onSelectTab(2),
+          },
+          {
+            key:'4',
+            Label: ({ color }) => <Text style={{ color }}>Tab4</Text>,
+            Icon: ({ color }) => (
+              <Text style={{ color, fontSize: 24, fontWeight: "800" }}>4</Text>
+            ),
+            onPress: () => onSelectTab(3),
+          },
+          {
+            key:'5',
+            Label: ({ color }) => <Text style={{ color }}>Tab5</Text>,
+            Icon: ({ color }) => (
+              <Text style={{ color, fontSize: 24, fontWeight: "800" }}>5</Text>
+            ),
+            onPress: () => onSelectTab(4),
+          },
+        ]}
+      />
+    </View>
+  );
+}
 
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
+
+```
 
 
 ### Using react-native-navigation
